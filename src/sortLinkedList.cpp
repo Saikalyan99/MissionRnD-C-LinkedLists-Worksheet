@@ -13,11 +13,43 @@ NOTES: Without using extra array or linked list.
 
 #include <stdio.h>
 
-struct node {
+struct node
+{
 	int num;
 	struct node *next;
 };
+void num_swap(struct node *ptr, struct node *ptrN);
 
-struct node * sortLinkedList(struct node *head) {
-	return NULL;
+struct node * sortLinkedList(struct node *head)
+{
+	if (head == NULL)
+		return NULL;
+	else
+	{
+		struct node *ptr, *indexptr = NULL;
+		int flag = 1;
+		while (flag != 0)
+		{
+			flag = 0;
+			ptr = head;
+			while (ptr->next != indexptr)
+			{
+				if (ptr->num > ptr->next->num)
+				{
+					num_swap(ptr, ptr->next);
+					flag = 1;
+				}
+				ptr = ptr->next;
+			}
+			indexptr = ptr;
+		}
+		return head;
+	}
+}
+void num_swap(struct node *ptr, struct node *ptrN)
+{
+	int temp;
+	temp = ptr->num;
+	ptr->num = ptrN->num;
+	ptrN->num = temp;
 }

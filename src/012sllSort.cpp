@@ -16,11 +16,42 @@ NOTES: Only 0,1,2, will be in sll nodes
 #include <stdio.h>
 #include <malloc.h>
 
-struct node {
+struct node
+{
 	int data;
 	struct node *next;
 };
 
-void sll_012_sort(struct node *head){
-	
+void swap(struct node *ptr, struct node *ptrN);
+void sll_012_sort(struct node *head)
+{
+	if (head == NULL)
+		return;
+	else
+	{
+		int flag = 1;
+		struct node *ptr, *indexptr = NULL;
+		while (flag != 0)
+		{
+			flag = 0;
+			ptr = head;
+			while (ptr->next != indexptr)
+			{
+				if (ptr->data > ptr->next->data)
+				{
+					swap(ptr, ptr->next);
+					flag = 1;
+				}
+				ptr = ptr->next;
+			}
+			indexptr = ptr;
+		}
+	}
+}
+void swap(struct node *ptr, struct node *ptrN)
+{
+	int temp;
+	temp = ptr->data;
+	ptr->data = ptrN->data;
+	ptrN->data = temp;
 }
